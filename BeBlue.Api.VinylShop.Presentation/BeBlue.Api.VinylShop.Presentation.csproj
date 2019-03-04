@@ -25,4 +25,19 @@
     <ProjectReference Include="..\BeBlue.Api.VinylShop.ExternalServices\BeBlue.Api.VinylShop.ExternalServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="BadRequestMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BadRequestMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="BadRequestMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BadRequestMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

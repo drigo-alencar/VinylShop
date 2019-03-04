@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extras.Moq" Version="4.3.0" />
     <PackageReference Include="AutoFixture" Version="4.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
     <PackageReference Include="Moq" Version="4.10.1" />
@@ -24,6 +25,12 @@
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DataLayer\BeBlue.Api.VinylShop.DataLayer.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DomainModel\BeBlue.Api.VinylShop.DomainModel.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.Presentation\BeBlue.Api.VinylShop.Presentation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
