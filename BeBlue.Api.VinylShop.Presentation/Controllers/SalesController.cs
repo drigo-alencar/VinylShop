@@ -12,6 +12,10 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 	[ApiController]
 	public class SalesController : Controller
 	{
+		private const int DEFAULT_OFFSET = 0;
+		private const int DEFAULT_PAGE_SIZE = 50;
+		private const int MAXIMUM_PAGE_SIZE = 500;
+
 		private readonly IUnitOfWork unitOfWork;
 
 		public SalesController(IUnitOfWork unitOfWork)
@@ -20,10 +24,10 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<IList<Sale>>> Get(DateTime startDate, DateTime endDate, int offset = 0, int limit = 50)
+		public async Task<ActionResult<IList<Sale>>> Get(DateTime startDate, DateTime endDate, int offset = DEFAULT_OFFSET, int limit = DEFAULT_PAGE_SIZE)
 		{
-			if (offset < 0) { return this.BadRequest(BadRequestMessages.OffsetMustBeAPositiveNumber); }
-			if (limit < 0 || limit > 500) { return this.BadRequest(BadRequestMessages.LimitMustBeBetweenZeroAndFiftyHundred); }
+			if (offset < DEFAULT_OFFSET) { return this.BadRequest(BadRequestMessages.OffsetMustBeAPositiveNumber); }
+			if (limit < DEFAULT_OFFSET || limit > MAXIMUM_PAGE_SIZE) { return this.BadRequest(BadRequestMessages.LimitMustBeBetweenZeroAndFiftyHundred); }
 
 			try
 			{
