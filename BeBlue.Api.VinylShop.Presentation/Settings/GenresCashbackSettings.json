@@ -1,0 +1,134 @@
+[
+  {
+    "Genre": "POP",
+    "Cashbacks": [
+      {
+        "DayOfWeek": "Sunday",
+        "Value": 25
+      },
+      {
+        "DayOfWeek": "Monday",
+        "Value": 7
+      },
+      {
+        "DayOfWeek": "Tuesday",
+        "Value": 6
+      },
+      {
+        "DayOfWeek": "Wednesday",
+        "Value": 2
+      },
+      {
+        "DayOfWeek": "Thursday",
+        "Value": 10
+      },
+      {
+        "DayOfWeek": "Friday",
+        "Value": 15
+      },
+      {
+        "DayOfWeek": "Saturday",
+        "Value": 20
+      }
+    ]
+  },
+  {
+    "Genre": "MPB",
+    "Cashbacks": [
+      {
+        "DayOfWeek": "Sunday",
+        "Value": 30
+      },
+      {
+        "DayOfWeek": "Monday",
+        "Value": 5
+      },
+      {
+        "DayOfWeek": "Tuesday",
+        "Value": 10
+      },
+      {
+        "DayOfWeek": "Wednesday",
+        "Value": 15
+      },
+      {
+        "DayOfWeek": "Thursday",
+        "Value": 20
+      },
+      {
+        "DayOfWeek": "Friday",
+        "Value": 25
+      },
+      {
+        "DayOfWeek": "Saturday",
+        "Value": 30
+      }
+    ]
+  },
+  {
+    "Genre": "CLASSIC",
+    "Cashbacks": [
+      {
+        "DayOfWeek": "Sunday",
+        "Value": 35
+      },
+      {
+        "DayOfWeek": "Monday",
+        "Value": 3
+      },
+      {
+        "DayOfWeek": "Tuesday",
+        "Value": 5
+      },
+      {
+        "DayOfWeek": "Wednesday",
+        "Value": 8
+      },
+      {
+        "DayOfWeek": "Thursday",
+        "Value": 13
+      },
+      {
+        "DayOfWeek": "Friday",
+        "Value": 18
+      },
+      {
+        "DayOfWeek": "Saturday",
+        "Value": 25
+      }
+    ]
+  },
+  {
+    "Genre": "ROCK",
+    "Cashbacks": [
+      {
+        "DayOfWeek": "Sunday",
+        "Value": 40
+      },
+      {
+        "DayOfWeek": "Monday",
+        "Value": 10
+      },
+      {
+        "DayOfWeek": "Tuesday",
+        "Value": 15
+      },
+      {
+        "DayOfWeek": "Wednesday",
+        "Value": 15
+      },
+      {
+        "DayOfWeek": "Thursday",
+        "Value": 15
+      },
+      {
+        "DayOfWeek": "Friday",
+        "Value": 20
+      },
+      {
+        "DayOfWeek": "Saturday",
+        "Value": 40
+      }
+    ]
+  }
+]
