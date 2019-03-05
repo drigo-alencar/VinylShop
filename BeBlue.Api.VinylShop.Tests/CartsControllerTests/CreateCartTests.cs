@@ -69,6 +69,24 @@ namespace BeBlue.Api.VinylShop.Tests.CartsControllerTests
 		}
 
 		[Fact]
+		public async void Given_a_valid_cart_request_the_returned_sale_must_have_date()
+		{
+			//Arrange
+			var albums = this.fixture.CreateMany<Album>().ToList();
+			this.unitOfWork.AlbumsRepository.GetByIdsAsync(Arg.Any<IList<string>>()).Returns(albums);
+
+			var request = new CreateCartRequest { AlbumsIds = albums.Select(a => a.Id).ToList() };
+
+			//Act
+			var response = (await this.controller.Post(request)).Result as CreatedAtRouteResult;
+			var result = response.Value as Sale;
+
+			//Assert
+			Assert.NotNull(result);
+			Assert.Equal(DateTime.Today, result.Date);
+		}
+
+		[Fact]
 		public async void Given_a_valid_cart_request_should_save_the_resulting_sale()
 		{
 			//Arrange
