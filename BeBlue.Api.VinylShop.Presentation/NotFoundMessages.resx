@@ -117,16 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CartMustHaveAListWithAlbumsIds" xml:space="preserve">
-    <value>A cart must have a list with wished albums id's  to buy</value>
-  </data>
-  <data name="CartRequestCantBeNull" xml:space="preserve">
-    <value>A request to create a cart can't be null</value>
-  </data>
-  <data name="MustProvideAlbumId" xml:space="preserve">
-    <value>Album Id can't be null or white space</value>
-  </data>
-  <data name="MustProvideGenre" xml:space="preserve">
-    <value>Genre can't be null  or whtie space</value>
+  <data name="OneOrMoreAlbumsCantBeFound" xml:space="preserve">
+    <value>One or more albums can't be found, their id(s) are: {0}</value>
   </data>
 </root>
