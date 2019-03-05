@@ -42,7 +42,8 @@ namespace BeBlue.Api.VinylShop.Presentation
 			services.AddSingleton<IMongoContext, MongoContext>();
 			services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
-			services.AddSingleton<CatalogBootStrapper>();
+			services.AddSingleton<CatalogBootstrapper>();
+			services.AddSingleton<CashbackSettingsBootstrapper>();
 
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -60,7 +61,8 @@ namespace BeBlue.Api.VinylShop.Presentation
                 app.UseHsts();
             }
 
-			app.ApplicationServices.GetRequiredService<CatalogBootStrapper>();
+			app.ApplicationServices.GetRequiredService<CatalogBootstrapper>();
+			app.ApplicationServices.GetRequiredService<CashbackSettingsBootstrapper>();
 
             app.UseHttpsRedirection();
             app.UseMvc();
