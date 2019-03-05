@@ -81,7 +81,7 @@ namespace BeBlue.Api.VinylShop.Tests.CartsControllerTests
 			var response = (await this.controller.Post(request)).Result as OkObjectResult;
 
 			//Assert
-			await this.unitOfWork.SalesRepository.Received().Save(Arg.Any<Sale>());
+			await this.unitOfWork.SalesRepository.Received().SaveAsync(Arg.Any<Sale>());
 		}
 
 		[Fact]
