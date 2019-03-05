@@ -20,12 +20,6 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 			this.unitOfWork = unitOfWork;
 		}
 
-		[HttpGet]
-		public IEnumerable<string> Get()
-		{
-			return new string[] { "value1", "value2" };
-		}
-
 		[HttpGet("{id}")]
 		public async Task<ActionResult<Album>> Get(string id)
 		{
@@ -36,6 +30,23 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 				var album = await this.unitOfWork.AlbumsRepository.GetByIdAsync(id);
 
 				return this.Ok(album);
+			}
+			catch (Exception e)
+			{
+				return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+			}
+		}
+
+		[HttpGet("genres")]
+		public async Task<ActionResult<IList<Album>>> Get(string genre, int offset = 0, int limit = 50)
+		{
+			if (String.IsNullOrWhiteSpace(genre)) { return this.BadRequest(BadRequestMessages.MustProvideGenre); }
+
+			try
+			{
+				var albums = await this.unitOfWork.AlbumsRepository.GetByGenreAsync(genre, offset, limit);
+
+				return this.Ok(albums);
 			}
 			catch (Exception e)
 			{

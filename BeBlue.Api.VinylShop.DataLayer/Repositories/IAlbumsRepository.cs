@@ -8,6 +8,8 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 	{
 		Task BulkInsertAsync(IEnumerable<Album> albums);
 
+		Task<IReadOnlyList<Album>> GetByGenreAsync(string genre, int offset, int limit);
+
 		Task<Album> GetByIdAsync(string id);
 	}
 }

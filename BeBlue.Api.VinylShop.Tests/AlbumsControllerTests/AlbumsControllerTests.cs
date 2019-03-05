@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeBlue.Api.VinylShop.Tests.DisksControllerTests
+namespace BeBlue.Api.VinylShop.Tests.AlbumsControllerTests
 {
 	public class AlbumsControllerTests
 	{
