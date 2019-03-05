@@ -120,4 +120,7 @@
   <data name="MustProvideAlbumId" xml:space="preserve">
     <value>Album Id can't be null or white space</value>
   </data>
+  <data name="MustProvideGenre" xml:space="preserve">
+    <value>Genre can't be null  or whtie space</value>
+  </data>
 </root>

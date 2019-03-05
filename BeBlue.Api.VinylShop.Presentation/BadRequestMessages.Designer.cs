@@ -68,5 +68,14 @@ namespace BeBlue.Api.VinylShop.Presentation {
                 return ResourceManager.GetString("MustProvideAlbumId", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre can&apos;t be null  or whtie space.
+        /// </summary>
+        public static string MustProvideGenre {
+            get {
+                return ResourceManager.GetString("MustProvideGenre", resourceCulture);
+            }
+        }
     }
 }
