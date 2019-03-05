@@ -123,6 +123,9 @@
   <data name="CartRequestCantBeNull" xml:space="preserve">
     <value>A request to create a cart can't be null</value>
   </data>
+  <data name="LimitMustBeBetweenZeroAndFiftyHundred" xml:space="preserve">
+    <value>The limit must be greater than 0 and less than or equal as 500</value>
+  </data>
   <data name="MustProvideAlbumId" xml:space="preserve">
     <value>Album Id can't be null or whitespace</value>
   </data>
@@ -131,5 +134,8 @@
   </data>
   <data name="MustProvideSaleId" xml:space="preserve">
     <value>Sale Id can't be null or whitespace</value>
+  </data>
+  <data name="OffsetMustBeAPositiveNumber" xml:space="preserve">
+    <value>The offset query parameter must be equal or greater than 0</value>
   </data>
 </root>

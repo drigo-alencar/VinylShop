@@ -52,6 +52,7 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 			{
 				var cashback = await this.cashbackCalculator.ApplyCashback(album);
 				sale.Albums.Add(album);
+				sale.Date = DateTime.Today;
 				sale.TotalPrice += album.Price;
 				sale.TotalCashback += cashback;
 			}
