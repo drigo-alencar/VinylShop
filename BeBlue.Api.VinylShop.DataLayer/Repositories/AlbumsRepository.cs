@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BeBlue.Api.VinylShop.DataLayer.Repositories
@@ -13,6 +14,11 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 		public AlbumsRepository(IMongoDatabase database)
 		{
 			this.database = database;
+		}
+
+		public async Task BulkInsertAsync(IEnumerable<Album> albums)
+		{
+			await this.database.GetCollection<Album>("Albums").InsertManyAsync(albums);
 		}
 
 		public async Task<IReadOnlyList<Album>> GetByGenreAsync(string genre, int offset, int limit)
@@ -33,9 +39,11 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 			return await this.database.GetCollection<Album>("Albums").Find(filter).FirstOrDefaultAsync();
 		}
 
-		public async Task BulkInsertAsync(IEnumerable<Album> albums)
+		public async Task<IList<Album>> GetByIdsAsync(IList<string> albumsIds)
 		{
-			await this.database.GetCollection<Album>("Albums").InsertManyAsync(albums);
+			var filter = Builders<Album>.Filter.In(a => a.Id, albumsIds);
+
+			return await this.database.GetCollection<Album>("Albums").Find(filter).ToListAsync();
 		}
 	}
 }
