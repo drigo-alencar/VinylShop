@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.Collections.Generic;
 
 namespace BeBlue.Api.VinylShop.DomainModel
@@ -9,6 +11,7 @@ namespace BeBlue.Api.VinylShop.DomainModel
 		public IList<string> Artists { get; set; }
 
 		[BsonRepresentation(MongoDB.Bson.BsonType.String)]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public Genres Genre { get; set; }
 
 		[BsonId(IdGenerator = typeof(StringObjectIdGenerator))]

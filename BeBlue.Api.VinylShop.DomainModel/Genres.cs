@@ -2,9 +2,9 @@
 {
 	public enum Genres
 	{
-		Pop = 1,
+		POP = 1,
 		MPB = 2,
-		Classic = 3,
-		Rock = 4
+		CLASSIC = 3,
+		ROCK = 4
 	}
 }
