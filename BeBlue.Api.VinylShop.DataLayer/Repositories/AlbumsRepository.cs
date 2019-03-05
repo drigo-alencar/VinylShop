@@ -9,6 +9,8 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 {
 	public class AlbumsRepository : IAlbumsRepository
 	{
+		private const string ALBUMS_COLLECTION = "Albums";
+
 		private IMongoDatabase database;
 
 		public AlbumsRepository(IMongoDatabase database)
@@ -18,7 +20,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 
 		public async Task BulkInsertAsync(IEnumerable<Album> albums)
 		{
-			await this.database.GetCollection<Album>("Albums").InsertManyAsync(albums);
+			await this.database.GetCollection<Album>(ALBUMS_COLLECTION).InsertManyAsync(albums);
 		}
 
 		public async Task<IReadOnlyList<Album>> GetByGenreAsync(string genre, int offset, int limit)
@@ -26,7 +28,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 			var filter = Builders<Album>.Filter.Eq(a => a.Genre, Enum.Parse<Genres>(genre.ToUpperInvariant()));
 			var sort = Builders<Album>.Sort.Ascending(a => a.Name);
 
-			return await this.database.GetCollection<Album>("Albums").Find(filter)
+			return await this.database.GetCollection<Album>(ALBUMS_COLLECTION).Find(filter)
 				.Sort(sort)
 				.Skip(offset)
 				.Limit(limit)
@@ -36,14 +38,14 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 		public async Task<Album> GetByIdAsync(string id)
 		{
 			var filter = Builders<Album>.Filter.Eq(a => a.Id, id);
-			return await this.database.GetCollection<Album>("Albums").Find(filter).FirstOrDefaultAsync();
+			return await this.database.GetCollection<Album>(ALBUMS_COLLECTION).Find(filter).FirstOrDefaultAsync();
 		}
 
 		public async Task<IList<Album>> GetByIdsAsync(IList<string> albumsIds)
 		{
 			var filter = Builders<Album>.Filter.In(a => a.Id, albumsIds);
 
-			return await this.database.GetCollection<Album>("Albums").Find(filter).ToListAsync();
+			return await this.database.GetCollection<Album>(ALBUMS_COLLECTION).Find(filter).ToListAsync();
 		}
 	}
 }

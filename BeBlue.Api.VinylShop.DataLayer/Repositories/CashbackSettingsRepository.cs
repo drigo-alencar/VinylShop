@@ -1,4 +1,4 @@
-using BeBlue.Api.VinylShop.DomainModel;
+﻿using BeBlue.Api.VinylShop.DomainModel;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -11,6 +11,8 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 {
 	public class CashbackSettingsRepository : ICashbackSettingsRepository
 	{
+		private const string CASHBACK_SETTINGS_COLLECTION = "CashbackSettings";
+
 		private readonly IMongoDatabase database;
 
 		public CashbackSettingsRepository(IMongoDatabase database)
@@ -20,14 +22,19 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 
 		public async Task BulkInsertAsync(IList<GenreCashbackSettings> genresCashbackSettings)
 		{
-			await this.database.GetCollection<GenreCashbackSettings>("CashbackSettings").InsertManyAsync(genresCashbackSettings);
+			var filter = Builders<GenreCashbackSettings>.Filter.In(g => g.Genre, genresCashbackSettings.Select(x => x.Genre));
+
+			foreach (var genreCashbackSetting in genresCashbackSettings)
+			{
+				await this.database.GetCollection<GenreCashbackSettings>(CASHBACK_SETTINGS_COLLECTION).ReplaceOneAsync(filter, genreCashbackSetting);
+			}
 		}
 
 		public async Task<GenreCashbackSettings> GetByGenre(Genres genre)
 		{
 			var filter = Builders<GenreCashbackSettings>.Filter.Eq(g => g.Genre, genre);
 
-			return await this.database.GetCollection<GenreCashbackSettings>("CashbackSettings").Find(filter).FirstOrDefaultAsync();
+			return await this.database.GetCollection<GenreCashbackSettings>(CASHBACK_SETTINGS_COLLECTION).Find(filter).FirstOrDefaultAsync();
 		}
 	}
 }

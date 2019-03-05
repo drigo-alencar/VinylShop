@@ -6,6 +6,8 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 {
 	public class SalesRepository : ISalesRepository
 	{
+		private const string SALES_COLLECTION = "Sales";
+
 		private IMongoDatabase database;
 
 		public SalesRepository(IMongoDatabase database)
@@ -15,7 +17,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 
 		public async Task Save(Sale sale)
 		{
-			await this.database.GetCollection<Sale>("Sales").InsertOneAsync(sale);
+			await this.database.GetCollection<Sale>(SALES_COLLECTION).InsertOneAsync(sale);
 		}
 	}
 }
