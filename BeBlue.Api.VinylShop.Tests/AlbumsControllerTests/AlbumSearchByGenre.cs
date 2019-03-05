@@ -1,14 +1,13 @@
-﻿using BeBlue.Api.VinylShop.DomainModel;
-using AutoFixture;
+﻿using AutoFixture;
+using BeBlue.Api.VinylShop.DomainModel;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Xunit;
-using NSubstitute;
-using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using NSubstitute.ExceptionExtensions;
-using Microsoft.AspNetCore.Http;
+using Xunit;
 
 namespace BeBlue.Api.VinylShop.Tests.AlbumsControllerTests
 {

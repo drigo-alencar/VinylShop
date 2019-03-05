@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using BeBlue.Api.VinylShop.DataLayer;
+﻿using BeBlue.Api.VinylShop.DataLayer;
 using BeBlue.Api.VinylShop.DomainModel;
 using BeBlue.Api.VinylShop.ExternalServices;
-using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BeBlue.Api.VinylShop.Presentation
 {

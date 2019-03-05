@@ -4,8 +4,6 @@ using BeBlue.Api.VinylShop.LogicLayer;
 using BeBlue.Api.VinylShop.Presentation.Controllers;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace BeBlue.Api.VinylShop.Tests.CartsControllerTests

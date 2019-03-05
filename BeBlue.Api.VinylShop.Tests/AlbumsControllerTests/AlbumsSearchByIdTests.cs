@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace BeBlue.Api.VinylShop.Tests.AlbumsControllerTests

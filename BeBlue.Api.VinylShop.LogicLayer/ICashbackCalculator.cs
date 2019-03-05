@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using BeBlue.Api.VinylShop.DomainModel;
+﻿using BeBlue.Api.VinylShop.DomainModel;
+using System.Threading.Tasks;
 
 namespace BeBlue.Api.VinylShop.LogicLayer
 {

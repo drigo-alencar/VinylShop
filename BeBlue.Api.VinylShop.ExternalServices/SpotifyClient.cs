@@ -1,17 +1,16 @@
-﻿using System;
+﻿using BeBlue.Api.VinylShop.DomainModel;
+using BeBlue.Api.VinylShop.ExternalServices.Exceptions;
+using BeBlue.Api.VinylShop.ExternalServices.Responses;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using BeBlue.Api.VinylShop.DomainModel;
-using BeBlue.Api.VinylShop.ExternalServices.Responses;
-using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace BeBlue.Api.VinylShop.ExternalServices
 {
@@ -45,9 +44,9 @@ namespace BeBlue.Api.VinylShop.ExternalServices
 
 				this.SetAuthenticationTokenHeader(clientAuthentication);
 			}
-			catch (Exception e)
+			catch (HttpRequestException e)
 			{
-				//TODO Log exception here
+				throw new SpotifyAuthenticationException("An error has occurred when authenticating on Spotify", e);
 			}
 		}
 

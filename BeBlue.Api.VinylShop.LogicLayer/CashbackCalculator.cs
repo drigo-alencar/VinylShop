@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BeBlue.Api.VinylShop.DataLayer;
+using BeBlue.Api.VinylShop.DomainModel;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BeBlue.Api.VinylShop.DataLayer;
-using BeBlue.Api.VinylShop.DomainModel;
 
 namespace BeBlue.Api.VinylShop.LogicLayer
 {

@@ -1,24 +1,16 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using BeBlue.Api.VinylShop.DataLayer;
 using BeBlue.Api.VinylShop.ExternalServices;
+using BeBlue.Api.VinylShop.LogicLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using BeBlue.Api.VinylShop.DataLayer;
-using BeBlue.Api.VinylShop.LogicLayer;
+using System.Net.Http;
 
 namespace BeBlue.Api.VinylShop.Presentation
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -30,8 +22,6 @@ namespace BeBlue.Api.VinylShop.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
-
 			var mongoSettings = this.Configuration.GetSection(nameof(MongoSettings)).Get<MongoSettings>();
 			var spotifySettings = this.Configuration.GetSection(nameof(SpotifySettings)).Get<SpotifySettings>();
 
