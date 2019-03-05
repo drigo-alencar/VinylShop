@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace BeBlue.Api.VinylShop.Tests.DisksControllerTests
+namespace BeBlue.Api.VinylShop.Tests.AlbumsControllerTests
 {
 	public class AlbumsSearchByIdTests : AlbumsControllerTests
 	{
@@ -27,10 +27,11 @@ namespace BeBlue.Api.VinylShop.Tests.DisksControllerTests
 		public async void Should_return_ok_response_if_searching_with_valid_id()
 		{
 			//Arrange
-			var id = this.fixture.Create<string>();
+			var album = this.fixture.Create<Album>();
+			this.unitOfWork.AlbumsRepository.GetByIdAsync(Arg.Any<string>()).Returns(album);
 
 			//Act
-			var response = (await this.controller.Get(id)).Result as OkObjectResult;
+			var response = (await this.controller.Get(album.Id)).Result as OkObjectResult;
 			var result = response.Value as Album;
 
 			//Assert
