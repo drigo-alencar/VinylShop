@@ -1,5 +1,6 @@
 ﻿using BeBlue.Api.VinylShop.DataLayer;
 using BeBlue.Api.VinylShop.DomainModel;
+using BeBlue.Api.VinylShop.LogicLayer;
 using BeBlue.Api.VinylShop.Presentation.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,11 +14,13 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 	[ApiController]
 	public class CartsController : Controller
 	{
+		private readonly ICashbackCalculator cashbackCalculator;
 		private readonly IUnitOfWork unitOfWork;
 
-		public CartsController(IUnitOfWork unitOfWork)
+		public CartsController(ICashbackCalculator cashbackCalculator, IUnitOfWork unitOfWork)
 		{
-			this.unitOfWork = unitOfWork;
+			this.cashbackCalculator = cashbackCalculator ?? throw new ArgumentNullException(nameof(cashbackCalculator));
+			this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 		}
 
 		[HttpPost]
@@ -35,7 +38,25 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 				return this.NotFound(message);
 			}
 
-			return this.Ok(new Sale());
+			var sale = await this.CreateSale(foundAlbums);
+			await this.unitOfWork.SalesRepository.Save(sale);
+
+			return this.CreatedAtRoute("GetSaleById", sale);
+		}
+
+		private async Task<Sale> CreateSale(IList<Album> foundAlbums)
+		{
+			var sale = new Sale();
+
+			foreach (var album in foundAlbums)
+			{
+				var cashback = await this.cashbackCalculator.ApplyCashback(album);
+				sale.Albums.Add(album);
+				sale.TotalPrice += album.Price;
+				sale.TotalCashback += cashback;
+			}
+
+			return sale;
 		}
 
 		private IEnumerable<string> CheckIfAnyAlbumWasNotFound(IList<string> albumsIds, IList<Album> foundAlbums)
