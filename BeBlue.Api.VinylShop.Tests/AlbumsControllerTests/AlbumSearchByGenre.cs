@@ -72,11 +72,60 @@ namespace BeBlue.Api.VinylShop.Tests.AlbumsControllerTests
 			Assert.NotEmpty(result);
 		}
 
+		[Fact]
+		public async void Given_a_request_with_offset_negative_should_return_bad_request_response()
+		{
+			//Arrange
+			string genre = MockGenre();
+
+			var albums = this.fixture.CreateMany<Album>();
+			this.unitOfWork.AlbumsRepository.GetByGenreAsync(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(albums.ToList());
+
+			//Act
+			var response = (await this.controller.Get(genre, offset: Int32.MinValue)).Result as BadRequestObjectResult;
+
+			//Assert
+			Assert.NotNull(response);
+		}
+
+		[Fact]
+		public async void Given_a_request_with_limit_greater_than_500_should_return_bad_request_response()
+		{
+			//Arrange
+			string genre = MockGenre();
+
+			var albums = this.fixture.CreateMany<Album>();
+			this.unitOfWork.AlbumsRepository.GetByGenreAsync(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(albums.ToList());
+
+			//Act
+			var response = (await this.controller.Get(genre, limit: 501)).Result as BadRequestObjectResult;
+
+			//Assert
+			Assert.NotNull(response);
+		}
+
+		[Fact]
+		public async void Given_a_request_with_negative_limit_should_return_bad_request_response()
+		{
+			//Arrange
+			string genre = MockGenre();
+
+			var albums = this.fixture.CreateMany<Album>();
+			this.unitOfWork.AlbumsRepository.GetByGenreAsync(Arg.Any<string>(), Arg.Any<int>(), Arg.Any<int>()).Returns(albums.ToList());
+
+			//Act
+			var response = (await this.controller.Get(genre, limit: Int32.MinValue)).Result as BadRequestObjectResult;
+
+			//Assert
+			Assert.NotNull(response);
+		}
+
 		private static string MockGenre()
 		{
 			var genres = Enum.GetValues(typeof(Genres));
 			var randomized = genres.GetValue(new Random().Next(genres.Length));
 			return Enum.GetName(typeof(Genres), randomized);
 		}
+
 	}
 }

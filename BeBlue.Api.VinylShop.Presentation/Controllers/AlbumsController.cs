@@ -13,6 +13,10 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 	[ApiController]
 	public class AlbumsController : Controller
 	{
+		private const int DEFAULT_OFFSET = 0;
+		private const int DEFAULT_PAGE_SIZE = 50;
+		private const int MAXIMUM_PAGE_SIZE = 500;
+
 		private IUnitOfWork unitOfWork;
 
 		public AlbumsController(IUnitOfWork unitOfWork)
@@ -38,9 +42,11 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 		}
 
 		[HttpGet("genres")]
-		public async Task<ActionResult<IList<Album>>> Get(string genre, int offset = 0, int limit = 50)
+		public async Task<ActionResult<IList<Album>>> Get(string genre, int offset = DEFAULT_OFFSET, int limit = DEFAULT_PAGE_SIZE)
 		{
 			if (String.IsNullOrWhiteSpace(genre)) { return this.BadRequest(BadRequestMessages.MustProvideGenre); }
+			if (offset < DEFAULT_OFFSET) { return this.BadRequest(BadRequestMessages.OffsetMustBeAPositiveNumber); }
+			if (limit < DEFAULT_OFFSET || limit > MAXIMUM_PAGE_SIZE) { return this.BadRequest(BadRequestMessages.LimitMustBeBetweenZeroAndFiftyHundred); }
 
 			try
 			{
