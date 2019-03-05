@@ -79,7 +79,7 @@ namespace BeBlue.Api.VinylShop.Presentation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Album Id can&apos;t be null or white space.
+        ///   Looks up a localized string similar to Album Id can&apos;t be null or whitespace.
         /// </summary>
         public static string MustProvideAlbumId {
             get {
@@ -93,6 +93,15 @@ namespace BeBlue.Api.VinylShop.Presentation {
         public static string MustProvideGenre {
             get {
                 return ResourceManager.GetString("MustProvideGenre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sale Id can&apos;t be null or whitespace.
+        /// </summary>
+        public static string MustProvideSaleId {
+            get {
+                return ResourceManager.GetString("MustProvideSaleId", resourceCulture);
             }
         }
     }

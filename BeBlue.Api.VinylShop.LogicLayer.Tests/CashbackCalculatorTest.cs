@@ -43,7 +43,7 @@ namespace BeBlue.Api.VinylShop.LogicLayer.Tests
 			this.fixture.Customize<GenreCashbackSettings>(g => g.With(x => x.Genre, album.Genre));
 			var genreCashbackSetting = this.fixture.Create<GenreCashbackSettings>();
 
-			this.unitOfWork.CashbackSettingsRepository.GetByGenre(Arg.Any<Genres>()).Returns(genreCashbackSetting);
+			this.unitOfWork.CashbackSettingsRepository.GetByGenreAsync(Arg.Any<Genres>()).Returns(genreCashbackSetting);
 
 			//Act
 			var cashback = await this.cashbackCalculator.ApplyCashback(album);
@@ -65,7 +65,7 @@ namespace BeBlue.Api.VinylShop.LogicLayer.Tests
 			this.fixture.Customize<GenreCashbackSettings>(g => g.With(x => x.Genre, album.Genre));
 			var genreCashbackSetting = this.fixture.Create<GenreCashbackSettings>();
 
-			this.unitOfWork.CashbackSettingsRepository.GetByGenre(Arg.Any<Genres>()).Returns(genreCashbackSetting);
+			this.unitOfWork.CashbackSettingsRepository.GetByGenreAsync(Arg.Any<Genres>()).Returns(genreCashbackSetting);
 
 			//Act
 			var cashback = await this.cashbackCalculator.ApplyCashback(album);

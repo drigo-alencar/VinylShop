@@ -15,7 +15,13 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 			this.database = database;
 		}
 
-		public async Task Save(Sale sale)
+		public async Task<Sale> GetByIdAsync(string id)
+		{
+			var filter = Builders<Sale>.Filter.Eq(s => s.Id, id);
+			return await this.database.GetCollection<Sale>(SALES_COLLECTION).Find(filter).FirstOrDefaultAsync();
+		}
+
+		public async Task SaveAsync(Sale sale)
 		{
 			await this.database.GetCollection<Sale>(SALES_COLLECTION).InsertOneAsync(sale);
 		}

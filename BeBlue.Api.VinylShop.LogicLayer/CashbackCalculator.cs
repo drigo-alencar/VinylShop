@@ -19,7 +19,7 @@ namespace BeBlue.Api.VinylShop.LogicLayer
 		{
 			if (album is null) { throw new ArgumentNullException(nameof(album)); }
 
-			var genreCashback = await this.unitOfWork.CashbackSettingsRepository.GetByGenre(album.Genre);
+			var genreCashback = await this.unitOfWork.CashbackSettingsRepository.GetByGenreAsync(album.Genre);
 
 			var todayApplicableCashback = genreCashback.Cashbacks.FirstOrDefault(c => c.DayOfWeek == DateTime.Today.DayOfWeek);
 

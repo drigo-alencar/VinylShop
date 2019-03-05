@@ -39,9 +39,9 @@ namespace BeBlue.Api.VinylShop.Presentation.Controllers
 			}
 
 			var sale = await this.CreateSale(foundAlbums);
-			await this.unitOfWork.SalesRepository.Save(sale);
+			await this.unitOfWork.SalesRepository.SaveAsync(sale);
 
-			return this.CreatedAtRoute("GetSaleById", sale);
+			return this.CreatedAtRoute("GetSaleById", new { sale.Id }, sale);
 		}
 
 		private async Task<Sale> CreateSale(IList<Album> foundAlbums)

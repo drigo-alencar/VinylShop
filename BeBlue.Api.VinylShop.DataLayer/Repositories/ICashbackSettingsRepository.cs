@@ -9,6 +9,6 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 	{
 		Task BulkInsertAsync(IList<GenreCashbackSettings> genresCashbackSettings);
 
-		Task<GenreCashbackSettings> GetByGenre(Genres genre);
+		Task<GenreCashbackSettings> GetByGenreAsync(Genres genre);
 	}
 }

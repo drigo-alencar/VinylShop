@@ -30,7 +30,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 			}
 		}
 
-		public async Task<GenreCashbackSettings> GetByGenre(Genres genre)
+		public async Task<GenreCashbackSettings> GetByGenreAsync(Genres genre)
 		{
 			var filter = Builders<GenreCashbackSettings>.Filter.Eq(g => g.Genre, genre);
 
