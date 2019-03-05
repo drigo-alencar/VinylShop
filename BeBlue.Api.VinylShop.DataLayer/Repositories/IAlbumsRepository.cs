@@ -11,5 +11,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 		Task<IReadOnlyList<Album>> GetByGenreAsync(string genre, int offset, int limit);
 
 		Task<Album> GetByIdAsync(string id);
+
+		Task<IList<Album>> GetByIdsAsync(IList<string> albumsIds);
 	}
 }

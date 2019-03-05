@@ -7,5 +7,7 @@ namespace BeBlue.Api.VinylShop.DataLayer
 		IAlbumsRepository AlbumsRepository { get; }
 
 		ICashbackSettingsRepository CashbackSettingsRepository { get; }
+
+		ISalesRepository SalesRepository { get; }
 	}
 }

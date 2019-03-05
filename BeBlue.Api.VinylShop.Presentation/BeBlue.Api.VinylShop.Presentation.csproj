@@ -23,6 +23,7 @@
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DataLayer\BeBlue.Api.VinylShop.DataLayer.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DomainModel\BeBlue.Api.VinylShop.DomainModel.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.ExternalServices\BeBlue.Api.VinylShop.ExternalServices.csproj" />
+    <ProjectReference Include="..\BeBlue.Api.VinylShop.LogicLayer\BeBlue.Api.VinylShop.LogicLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,12 +32,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>BadRequestMessages.resx</DependentUpon>
     </Compile>
+    <Compile Update="NotFoundMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NotFoundMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="BadRequestMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BadRequestMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="NotFoundMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotFoundMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

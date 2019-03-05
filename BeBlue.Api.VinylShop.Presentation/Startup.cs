@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using BeBlue.Api.VinylShop.DataLayer;
+using BeBlue.Api.VinylShop.LogicLayer;
 
 namespace BeBlue.Api.VinylShop.Presentation
 {
@@ -41,6 +42,7 @@ namespace BeBlue.Api.VinylShop.Presentation
 			services.AddSingleton<ISpotifyClient, SpotifyClient>();
 			services.AddSingleton<IMongoContext, MongoContext>();
 			services.AddSingleton<IUnitOfWork, UnitOfWork>();
+			services.AddSingleton<ICashbackCalculator, CashbackCalculator>();
 
 			services.AddSingleton<CatalogBootstrapper>();
 			services.AddSingleton<CashbackSettingsBootstrapper>();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,10 +30,11 @@ namespace BeBlue.Api.VinylShop.Presentation
 
 			var albums = spotifyAlbums.Select(x => new Album
 			{
-				Name = x.Name,
-				ReleaseDate = x.ReleaseDate,
 				Artists = x.Artists.Select(a => a.Name).ToList(),
 				Genre = x.Genre,
+				Name = x.Name,
+				Price = new Random().NextDouble(),
+				ReleaseDate = x.ReleaseDate,
 				Tracks = x.TotalTracks
 			});
 

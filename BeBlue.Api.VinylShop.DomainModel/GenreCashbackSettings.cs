@@ -11,6 +11,7 @@ namespace BeBlue.Api.VinylShop.DomainModel
 {
 	public class GenreCashbackSettings
 	{
+		[BsonIgnoreIfNull]
 		[BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
 		public string Id { get; set; }
 
