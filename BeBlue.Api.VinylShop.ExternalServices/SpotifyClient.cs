@@ -63,19 +63,29 @@ namespace BeBlue.Api.VinylShop.ExternalServices
 
 		public async Task<IReadOnlyList<AlbumResponse>> RetrieveAlbums()
 		{
-			var albums = new List<AlbumResponse>();
-			foreach (Genres genre in Enum.GetValues(typeof(Genres)))
+			try
 			{
-				var response = await this.client.GetAsync(this.spotifySettings.SearchUri + $"?q={genre}&genre:{genre}&type=track&limit=50");
-				var queryResult = JObject.Parse(await response.Content.ReadAsStringAsync());
-
-				foreach (var album in queryResult["tracks"]["items"].Children().Select(x => x["album"].ToObject<AlbumResponse>()))
+				var albums = new List<AlbumResponse>();
+				foreach (Genres genre in Enum.GetValues(typeof(Genres)))
 				{
-					album.Genre = genre;
-					albums.Add(album);
+					var response = await this.client.GetAsync(this.spotifySettings.SearchUri + $"?q={genre}&genre:{genre}&type=track&limit=50");
+
+					response.EnsureSuccessStatusCode();
+
+					var queryResult = JObject.Parse(await response.Content.ReadAsStringAsync());
+
+					foreach (var album in queryResult["tracks"]["items"].Children().Select(x => x["album"].ToObject<AlbumResponse>()))
+					{
+						album.Genre = genre;
+						albums.Add(album);
+					}
 				}
+				return albums;
 			}
-			return albums;
+			catch (HttpRequestException e)
+			{
+				throw new SpotifyAuthenticationException("An error has occurred when retrieving albums from Spotify", e);
+			}
 		}
 	}
 }
