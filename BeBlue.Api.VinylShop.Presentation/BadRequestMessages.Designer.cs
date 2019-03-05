@@ -79,6 +79,15 @@ namespace BeBlue.Api.VinylShop.Presentation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The limit must be greater than 0 and less than or equal as 500.
+        /// </summary>
+        public static string LimitMustBeBetweenZeroAndFiftyHundred {
+            get {
+                return ResourceManager.GetString("LimitMustBeBetweenZeroAndFiftyHundred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Album Id can&apos;t be null or whitespace.
         /// </summary>
         public static string MustProvideAlbumId {
@@ -102,6 +111,15 @@ namespace BeBlue.Api.VinylShop.Presentation {
         public static string MustProvideSaleId {
             get {
                 return ResourceManager.GetString("MustProvideSaleId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The offset query parameter must be equal or greater than 0.
+        /// </summary>
+        public static string OffsetMustBeAPositiveNumber {
+            get {
+                return ResourceManager.GetString("OffsetMustBeAPositiveNumber", resourceCulture);
             }
         }
     }
