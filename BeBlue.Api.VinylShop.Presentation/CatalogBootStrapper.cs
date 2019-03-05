@@ -10,12 +10,12 @@ using Microsoft.Extensions.Hosting;
 
 namespace BeBlue.Api.VinylShop.Presentation
 {
-	public class CatalogBootStrapper
+	public class CatalogBootstrapper
 	{
-		private ISpotifyClient spotifyClient;
-		private IUnitOfWork unitOfWork;
+		private readonly ISpotifyClient spotifyClient;
+		private readonly IUnitOfWork unitOfWork;
 
-		public CatalogBootStrapper(ISpotifyClient spotifyClient, IUnitOfWork unitOfWork)
+		public CatalogBootstrapper(ISpotifyClient spotifyClient, IUnitOfWork unitOfWork)
 		{
 			this.spotifyClient = spotifyClient;
 			this.unitOfWork = unitOfWork;
@@ -23,7 +23,7 @@ namespace BeBlue.Api.VinylShop.Presentation
 			this.Execute().Wait();
 		}
 
-		protected async Task Execute()
+		private async Task Execute()
 		{
 			var spotifyAlbums = await this.spotifyClient.RetrieveAlbums();
 
