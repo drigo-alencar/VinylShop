@@ -19,7 +19,10 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 
 		public async Task<IList<Sale>> GetByDatesAsync(DateTime startDate, DateTime endDate, int offset, int limit)
 		{
-			var filter = Builders<Sale>.Filter.In(a => a.Date, new [] { startDate, endDate });
+			var greaterThanStartDate = Builders<Sale>.Filter.Gte(a => a.Date, startDate);
+			var lessThanEndDate = Builders<Sale>.Filter.Lte(a => a.Date, endDate);
+			var filter = greaterThanStartDate & lessThanEndDate;
+
 			var sort = Builders<Sale>.Sort.Descending(a => a.Date);
 
 			return await this.database.GetCollection<Sale>(SALES_COLLECTION).Find(filter)
