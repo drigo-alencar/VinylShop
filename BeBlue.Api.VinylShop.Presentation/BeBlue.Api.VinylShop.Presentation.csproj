@@ -23,6 +23,7 @@
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DataLayer\BeBlue.Api.VinylShop.DataLayer.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.DomainModel\BeBlue.Api.VinylShop.DomainModel.csproj" />
     <ProjectReference Include="..\BeBlue.Api.VinylShop.ExternalServices\BeBlue.Api.VinylShop.ExternalServices.csproj" />
+    <ProjectReference Include="..\BeBlue.Api.VinylShop.LogicLayer\BeBlue.Api.VinylShop.LogicLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
