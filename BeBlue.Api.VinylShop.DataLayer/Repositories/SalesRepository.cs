@@ -1,5 +1,7 @@
 ﻿using BeBlue.Api.VinylShop.DomainModel;
 using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BeBlue.Api.VinylShop.DataLayer.Repositories
@@ -13,6 +15,18 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 		public SalesRepository(IMongoDatabase database)
 		{
 			this.database = database;
+		}
+
+		public async Task<IList<Sale>> GetByDatesAsync(DateTime startDate, DateTime endDate, int offset, int limit)
+		{
+			var filter = Builders<Sale>.Filter.In(a => a.Date, new [] { startDate, endDate });
+			var sort = Builders<Sale>.Sort.Descending(a => a.Date);
+
+			return await this.database.GetCollection<Sale>(SALES_COLLECTION).Find(filter)
+				.Sort(sort)
+				.Skip(offset)
+				.Limit(limit)
+				.ToListAsync();
 		}
 
 		public async Task<Sale> GetByIdAsync(string id)
