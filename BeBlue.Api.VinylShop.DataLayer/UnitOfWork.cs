@@ -32,5 +32,16 @@ namespace BeBlue.Api.VinylShop.DataLayer
 				return this.cashbackSettingsRepository;
 			}
 		}
+
+		private ISalesRepository salesRepository;
+
+		public ISalesRepository SalesRepository
+		{
+			get
+			{
+				if (this.salesRepository == null) { this.salesRepository = new SalesRepository(this.context.Database); }
+				return this.salesRepository;
+			}
+		}
 	}
 }
