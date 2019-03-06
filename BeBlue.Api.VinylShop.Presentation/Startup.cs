@@ -1,12 +1,19 @@
-﻿using BeBlue.Api.VinylShop.DataLayer;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using BeBlue.Api.VinylShop.ExternalServices;
-using BeBlue.Api.VinylShop.LogicLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using BeBlue.Api.VinylShop.DataLayer;
+using BeBlue.Api.VinylShop.LogicLayer;
 
 namespace BeBlue.Api.VinylShop.Presentation
 {
@@ -47,10 +54,6 @@ namespace BeBlue.Api.VinylShop.Presentation
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
             }
 
 			app.ApplicationServices.GetRequiredService<CatalogBootstrapper>();
