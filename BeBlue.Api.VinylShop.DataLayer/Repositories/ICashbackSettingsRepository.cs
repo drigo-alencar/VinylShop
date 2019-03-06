@@ -6,7 +6,7 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 {
 	public interface ICashbackSettingsRepository
 	{
-		Task BulkInsertAsync(IList<GenreCashbackSettings> genresCashbackSettings);
+		Task InsertAsync(GenreCashbackSettings genreCashbackSetting);
 
 		Task<GenreCashbackSettings> GetByGenreAsync(Genres genre);
 	}
