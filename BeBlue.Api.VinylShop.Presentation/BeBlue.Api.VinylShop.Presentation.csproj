@@ -38,6 +38,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Settings\GenresCashbackSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="BadRequestMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BadRequestMessages.Designer.cs</LastGenOutput>

@@ -9,7 +9,7 @@ namespace BeBlue.Api.VinylShop.Presentation
 {
 	public class CashbackSettingsBootstrapper
 	{
-		private const string GENRE_CASHBACK_SETTINGS_FILE = @"Settings\GenresCashbackSettings.json";
+		private const string GENRE_CASHBACK_SETTINGS_FILE = @"Settings/GenresCashbackSettings.json";
 
 		private readonly IUnitOfWork unitOfWork;
 
@@ -22,8 +22,12 @@ namespace BeBlue.Api.VinylShop.Presentation
 		private async Task Execute()
 		{
 			var cashbackSettingsFile = File.ReadAllText(GENRE_CASHBACK_SETTINGS_FILE);
-			var cashbackSettings = JsonConvert.DeserializeObject<IList<GenreCashbackSettings>>(cashbackSettingsFile);
-			await this.unitOfWork.CashbackSettingsRepository.BulkInsertAsync(cashbackSettings);
+			var genresCashbackSettings = JsonConvert.DeserializeObject<IList<GenreCashbackSettings>>(cashbackSettingsFile);
+
+			foreach (var genreCashbackSetting in genresCashbackSettings)
+			{
+				await this.unitOfWork.CashbackSettingsRepository.InsertAsync(genreCashbackSetting);
+			}
 		}
 	}
 }

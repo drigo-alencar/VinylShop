@@ -1,5 +1,6 @@
 ﻿using BeBlue.Api.VinylShop.DomainModel;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,14 +18,11 @@ namespace BeBlue.Api.VinylShop.DataLayer.Repositories
 			this.database = database;
 		}
 
-		public async Task BulkInsertAsync(IList<GenreCashbackSettings> genresCashbackSettings)
+		public async Task InsertAsync(GenreCashbackSettings genreCashbackSetting)
 		{
-			var filter = Builders<GenreCashbackSettings>.Filter.In(g => g.Genre, genresCashbackSettings.Select(x => x.Genre));
+			var filter = Builders<GenreCashbackSettings>.Filter.Eq(g => g.Genre, genreCashbackSetting.Genre);
 
-			foreach (var genreCashbackSetting in genresCashbackSettings)
-			{
-				await this.database.GetCollection<GenreCashbackSettings>(CASHBACK_SETTINGS_COLLECTION).ReplaceOneAsync(filter, genreCashbackSetting);
-			}
+			await this.database.GetCollection<GenreCashbackSettings>(CASHBACK_SETTINGS_COLLECTION).ReplaceOneAsync(filter, genreCashbackSetting, new UpdateOptions { IsUpsert = true });
 		}
 
 		public async Task<GenreCashbackSettings> GetByGenreAsync(Genres genre)
