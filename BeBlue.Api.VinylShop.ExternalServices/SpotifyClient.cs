@@ -46,7 +46,7 @@ namespace BeBlue.Api.VinylShop.ExternalServices
 			}
 			catch (HttpRequestException e)
 			{
-				throw new SpotifyAuthenticationException("An error has occurred when authenticating on Spotify", e);
+				throw new SpotifyException("An error has occurred when authenticating on Spotify", e);
 			}
 		}
 
@@ -84,7 +84,7 @@ namespace BeBlue.Api.VinylShop.ExternalServices
 			}
 			catch (HttpRequestException e)
 			{
-				throw new SpotifyAuthenticationException("An error has occurred when retrieving albums from Spotify", e);
+				throw new SpotifyException("An error has occurred when retrieving albums from Spotify", e);
 			}
 		}
 	}
