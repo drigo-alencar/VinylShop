@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  beblue.api.vinylshop.presentation:
+    image: vinylshop
+    build:
+      context: .
+      dockerfile: BeBlue.Api.VinylShop.Presentation/Dockerfile
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      #- ASPNETCORE_URLS=https://+:443;http://+:80
+      #- ASPNETCORE_HTTPS_PORT=44306
+    ports:
+      - "43608:80"
+      #- "44306:443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+
+  db:
+    image: mongo:latest
